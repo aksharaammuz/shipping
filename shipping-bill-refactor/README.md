@@ -40,8 +40,7 @@ styles.css                           # Responsive presentation
 
 - **Tools used:** ChatGPT for planning, architecture review and drafting validation scenarios.
 - **How used:** To outline service boundaries, identify practical field checks and review user-facing states.
-- **Judgment:** Kept the implementation dependency-free and avoided overengineering. Mock data and business validation are separated from the UI.
-- **Validation:** Manually review loading, retry, invalid fields, successful submission, reset behavior and responsive layouts before submission. Domain assumptions should be checked against authoritative customs guidance.
+
 
 ## Before submitting the assignment
 
