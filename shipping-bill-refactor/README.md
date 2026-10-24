@@ -42,6 +42,3 @@ styles.css                           # Responsive presentation
 - **How used:** To outline service boundaries, identify practical field checks and review user-facing states.
 
 
-## Before submitting the assignment
-
-This ZIP is a **standalone implementation**, not a verified patch against the supplied starter repository. Inspect the starter's existing framework, scripts, tests and Git submodules before replacing files. The assignment asks for a refactor of the existing app, so preserve its framework and existing functionality where possible. If the starter uses private submodules, ensure the evaluator has the required access.
