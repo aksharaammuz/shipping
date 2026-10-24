@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shipping Bill workspace — clear, reliable export declaration form." />
+  <title>Shipping Bill Workspace</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Harbor workspace home">
+        <span class="brand-mark">H</span>
+        <span><strong>harbor</strong><small>EXPORT WORKSPACE</small></span>
+      </a>
+      <div class="nav-label">WORKSPACE</div>
+      <a class="nav-item" href="#"><span class="nav-icon">▦</span> Overview</a>
+      <a class="nav-item active" href="#"><span class="nav-icon">▤</span> Shipping bills</a>
+      <a class="nav-item" href="#"><span class="nav-icon">⇄</span> Shipments</a>
+      <a class="nav-item" href="#"><span class="nav-icon">▧</span> Documents</a>
+      <div class="sidebar-bottom">
+        <div class="help-card"><span class="help-icon">?</span><div><strong>Need a hand?</strong><p>Review your export details before submission.</p></div></div>
+        <div class="profile"><div class="avatar">AA</div><div><strong>Akshara A.</strong><small>Export operations</small></div><span class="profile-menu">•••</span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>Workspace</span><span class="crumb-sep">/</span><span>Shipping bills</span><span class="crumb-sep">/</span><strong>New declaration</strong></div>
+        <div class="top-actions"><span class="secure"><span class="secure-dot"></span> Secure workspace</span><button class="icon-button" type="button" aria-label="Notifications">♧<i></i></button></div>
+      </header>
+
+      <section class="page-heading">
+        <div>
+          <div class="eyebrow"><span class="eyebrow-dot"></span> EXPORT DOCUMENTATION</div>
+          <h1>Create shipping bill</h1>
+          <p class="subtitle">Enter shipment, exporter and item details to prepare your export declaration.</p>
+        </div>
+        <div class="heading-meta"><span class="draft-dot"></span><span id="draft-status">Draft · Not submitted</span></div>
+      </section>
+
+      <div class="progress-wrap" aria-label="Form progress">
+        <div class="progress-copy"><span>Declaration details</span><strong id="progress-label">0% complete</strong></div>
+        <div class="progress-track"><div id="progress-bar"></div></div>
+      </div>
+
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+      <div id="loading-state" class="loading-state"><span class="spinner"></span> Preparing declaration form…</div>
+      <div id="error-state" class="error-state" hidden><strong>We couldn’t load the form options.</strong><p>Please check your connection and try again.</p><button class="button secondary" id="retry-load" type="button">Try again</button></div>
+
+      <form id="shipping-form" novalidate hidden>
+        <section class="form-card">
+          <div class="card-heading"><div class="section-number">01</div><div><h2>Exporter details</h2><p>Who is sending the goods?</p></div><span class="card-check" id="check-exporter">○</span></div>
+          <div class="field-grid">
+            <div class="field"><label for="exporterName">Exporter / company name <em>*</em></label><input id="exporterName" name="exporterName" autocomplete="organization" placeholder="e.g. Malabar Exports Pvt. Ltd." required /><small class="field-error"></small></div>
+            <div class="field"><label for="iec">Importer Exporter Code (IEC) <em>*</em></label><input id="iec" name="iec" maxlength="10" placeholder="10-character IEC" required /><small class="hint">Enter the IEC issued to your business.</small><small class="field-error"></small></div>
+            <div class="field"><label for="exporterCountry">Exporter country <em>*</em></label><select id="exporterCountry" name="exporterCountry" required><option value="">Choose country</option></select><small class="field-error"></small></div>
+            <div class="field"><label for="gstin">GSTIN <span class="optional">Optional</span></label><input id="gstin" name="gstin" placeholder="15-character GSTIN (if applicable)" maxlength="15" /><small class="field-error"></small></div>
+          </div>
+        </section>
+
+        <section class="form-card">
+          <div class="card-heading"><div class="section-number">02</div><div><h2>Consignee details</h2><p>Who will receive the shipment?</p></div><span class="card-check" id="check-consignee">○</span></div>
+          <div class="field-grid">
+            <div class="field"><label for="consigneeName">Consignee / buyer name <em>*</em></label><input id="consigneeName" name="consigneeName" placeholder="Enter buyer or recipient name" required /><small class="field-error"></small></div>
+            <div class="field"><label for="destinationCountry">Destination country <em>*</em></label><select id="destinationCountry" name="destinationCountry" required><option value="">Choose destination</option></select><small class="field-error"></small></div>
+            <div class="field field-wide"><label for="consigneeAddress">Consignee address <em>*</em></label><textarea id="consigneeAddress" name="consigneeAddress" rows="2" placeholder="Street, city, postal code" required></textarea><small class="field-error"></small></div>
+          </div>
+        </section>
+
+        <section class="form-card">
+          <div class="card-heading"><div class="section-number">03</div><div><h2>Shipment details</h2><p>How will the goods leave the country?</p></div><span class="card-check" id="check-shipment">○</span></div>
+          <div class="field-grid">
+            <div class="field"><label for="port">Port of loading <em>*</em></label><select id="port" name="port" required><option value="">Select loading port</option></select><small class="field-error"></small></div>
+            <div class="field"><label for="transportMode">Mode of transport <em>*</em></label><select id="transportMode" name="transportMode" required><option value="">Choose mode</option></select><small class="field-error"></small></div>
+            <div class="field"><label for="invoiceNumber">Commercial invoice number <em>*</em></label><input id="invoiceNumber" name="invoiceNumber" placeholder="e.g. INV-2026-001" required /><small class="field-error"></small></div>
+            <div class="field"><label for="invoiceDate">Invoice date <em>*</em></label><input id="invoiceDate" name="invoiceDate" type="date" required /><small class="field-error"></small></div>
+            <div class="field"><label for="currency">Invoice currency <em>*</em></label><select id="currency" name="currency" required><option value="">Choose currency</option></select><small class="field-error"></small></div>
+            <div class="field"><label for="invoiceValue">Invoice value <em>*</em></label><div class="input-prefix"><span id="currency-prefix">—</span><input id="invoiceValue" name="invoiceValue" type="number" min="0.01" step="0.01" placeholder="0.00" required /></div><small class="field-error"></small></div>
+          </div>
+        </section>
+
+        <section class="form-card">
+          <div class="card-heading"><div class="section-number">04</div><div><h2>Goods &amp; packages</h2><p>Describe the goods included in this declaration.</p></div><span class="card-check" id="check-goods">○</span></div>
+          <div class="field-grid">
+            <div class="field field-wide"><label for="goodsDescription">Goods description <em>*</em></label><textarea id="goodsDescription" name="goodsDescription" rows="2" placeholder="Clear description of the exported goods" required></textarea><small class="field-error"></small></div>
+            <div class="field"><label for="hsCode">HS / HSN code <em>*</em></label><input id="hsCode" name="hsCode" inputmode="numeric" placeholder="6–8 digit code" required /><small class="hint">Confirm the correct classification for your goods.</small><small class="field-error"></small></div>
+            <div class="field"><label for="packages">Number of packages <em>*</em></label><input id="packages" name="packages" type="number" min="1" step="1" placeholder="e.g. 24" required /><small class="field-error"></small></div>
+            <div class="field"><label for="grossWeight">Gross weight (kg) <em>*</em></label><input id="grossWeight" name="grossWeight" type="number" min="0.01" step="0.01" placeholder="0.00" required /><small class="field-error"></small></div>
+            <div class="field"><label for="netWeight">Net weight (kg) <em>*</em></label><input id="netWeight" name="netWeight" type="number" min="0.01" step="0.01" placeholder="0.00" required /><small class="field-error"></small></div>
+          </div>
+          <div class="info-note"><span>ⓘ</span><p>Make sure the invoice, goods description, classification and package details match your supporting documents. Requirements can vary by commodity and export scheme.</p></div>
+        </section>
+
+        <div class="form-footer">
+          <p><span class="required-star">*</span> Required fields</p>
+          <div class="footer-actions"><button class="button secondary" id="reset-form" type="button">Clear form</button><button class="button primary" id="submit-button" type="submit">Review &amp; submit <span>→</span></button></div>
+        </div>
+      </form>
+      <footer class="page-footer"><span>Harbor Export Workspace</span><span>Demo interface · No customs filing is performed</span></footer>
+    </main>
+  </div>
+  <div id="success-modal" class="modal-backdrop" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="success-title">
+      <div class="success-icon">✓</div><h2 id="success-title">Declaration submitted</h2><p>Your demo submission has been recorded by the mock service. No information was sent to a customs authority.</p>
+      <div class="reference-box"><span>DEMO REFERENCE</span><strong id="reference-number">SB-DEMO-000001</strong></div>
+      <button id="close-modal" class="button primary full-button" type="button">Back to declaration</button>
+    </div>
+  </div>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
